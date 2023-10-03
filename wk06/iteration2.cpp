@@ -14,5 +14,18 @@ using namespace std;
 
 void printEverySecond(const list<int>& lst)
 {
-    // ADD YOUR CODE HERE
+    std::list<int>::const_iterator it = lst.begin();
+
+    bool print = false; 
+
+    while (it != lst.end()) {
+        if (print) {
+            std::cout << *it << " ";
+        }
+
+        ++it;
+        print = !print; 
+    }
+
+    std::cout << std::endl;
 }
