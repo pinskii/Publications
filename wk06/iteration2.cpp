@@ -16,7 +16,7 @@ void printEverySecond(const list<int>& lst)
 {
     std::list<int>::const_iterator it = lst.begin();
 
-    bool print = false; 
+    bool print = true; 
 
     while (it != lst.end()) {
         if (print) {
