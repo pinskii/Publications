@@ -14,5 +14,12 @@ using namespace std;
 
 void printAllItems(const list<int>& lst)
 {
-    // ADD YOUR CODE HERE
+    std::list<int>::const_iterator it = lst.begin();
+
+    while (it != lst.end()) {
+        std::cout << *it << " ";
+        ++it;
+    }
+
+    std::cout << std::endl;
 }
