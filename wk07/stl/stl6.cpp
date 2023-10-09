@@ -15,7 +15,17 @@ using namespace std;
  * @param given limit for the values to search
  * @return int the real found value
  */
-int findAtLeastGiven(std::map<std::string, int>& m, int given)
-{
+
+int findAtLeastGiven(std::map<std::string, int>& m, int given) {
+    auto it = std::find_if(m.begin(), m.end(), [given](const std::pair<std::string, int>& pair) {
+        return pair.second >= given;
+    });
+
+    if (it != m.end()) {
+        return it->second; // Return the first value that meets the criteria
+    }
+
+    return NOT_FOUND;
 }
+
 
