@@ -6,6 +6,9 @@
 
 using namespace std;
 
+bool isSmaller(int a, int limit) {
+    return a < limit;
+}
 
 /**
  * @brief Remove from vector v all elements with value less than the limit
@@ -15,6 +18,12 @@ using namespace std;
  */
 int removeLessThan(std::vector<int>& v, int limit)
 {
-    return EXIT_FAILURE;
+    auto newEnd = std::remove_if(v.begin(), v.end(), [limit](int a) {
+            return isSmaller(a, limit);
+        });
+
+        // Erase the elements that were moved to the end
+        v.erase(newEnd, v.end());
+    return EXIT_SUCCESS;
 }
 
