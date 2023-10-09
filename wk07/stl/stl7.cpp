@@ -26,7 +26,7 @@ int findMedian(std::vector<int>& v)
     std::sort(v.begin(), v.end());
     if (v.size() % 2 == 0) {
         i = v.size() / 2;
-        j = i + 1;
+        j = i - 1;
         median = (v[i] + v[j]) / 2;
 
         return median;
