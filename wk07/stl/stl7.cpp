@@ -17,13 +17,26 @@ using namespace std;
 int findMedian(std::vector<int>& v)
 {
     int i;
+    int j;
     int median;
+    int center;
     if (v.size() == 0) {
         return NOT_FOUND;
     }
     std::sort(v.begin(), v.end());
-    i = v.size() / 2;
-    median = v[i];
-    return median;
+    if (v.size() % 2 == 0) {
+        i = v.size() / 2;
+        j = i + 1;
+        center = (v[i] + v[j]) / 2;
+        median = v[center];
+        return median;
+    }
+
+    else {
+        i = v.size() / 2;
+        median = v[i];
+        return median;
+    }
+
 }
 
