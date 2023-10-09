@@ -6,6 +6,9 @@
 
 using namespace std;
 
+bool compare(int a, int b) {
+    return a > b;
+}
 
 /**
  * @brief sort a given vector to an descending order
@@ -15,6 +18,9 @@ using namespace std;
  */
 int sortDesc(std::vector<int>& v)
 {
-    return EXIT_FAILURE;
+    std::sort(v.begin(), v.end(), compare);
+    return EXIT_SUCCESS;
 }
+
+
 
