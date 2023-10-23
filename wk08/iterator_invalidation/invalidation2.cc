@@ -11,9 +11,12 @@ using namespace std;
  * @param vec vector where every second item is erased.
  */
 void eraseEverySecond(std::vector<int>& vec) {
-    auto beg = vec.begin();
-    auto end = vec.end();
-    for (auto i = beg; i != end; i = i+2)
-    { vec.erase(i); }
+    for (auto i = vec.begin() + 1; i < vec.end(); i += 1) {
+        vec.erase(i);
+    }
 }
+
+
+
+
 
