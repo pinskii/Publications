@@ -1,16 +1,14 @@
 // Datastructures.cc
 //
-// Student name: Pinja Rontu
-// Student email: pinja.rontu@tuni.fi
-// Student number: H299834
+// Student name:
+// Student email:
+// Student number:
 
 #include "datastructures.hh"
 
 #include <random>
 
 #include <cmath>
-
-#include <map>
 
 std::minstd_rand rand_engine; // Reasonably quick pseudo-random generator
 
@@ -42,123 +40,63 @@ Datastructures::~Datastructures()
 
 unsigned int Datastructures::get_affiliation_count()
 {
-    return allAffiliations.size();
+    // Replace the line below with your implementation
+    throw NotImplemented("get_affiliation_count()");
 }
 
 void Datastructures::clear_all()
 {
-    allAffiliations.clear();
-    allPublications.clear();
+    // Replace the line below with your implementation
+    throw NotImplemented("clear_all()");
 }
 
 std::vector<AffiliationID> Datastructures::get_all_affiliations()
 {
-    std::vector<AffiliationID> affiliations;
-
-    for (auto& affiliation : allAffiliations) {
-        affiliations.push_back(affiliation.first);
-    }
-
-    return affiliations;
+    // Replace the line below with your implementation
+    throw NotImplemented("get_all_affiliations()");
 }
 
-bool Datastructures::add_affiliation(AffiliationID id, const Name &name, Coord xy)
+bool Datastructures::add_affiliation(AffiliationID /*id*/, const Name &/*name*/, Coord /*xy*/)
 {
-    if (allAffiliations.find(id) != allAffiliations.end()) {
-            return false;
-        }
-
-    else {
-        Affiliation newAffiliation;
-        newAffiliation.id = id;
-        newAffiliation.name = name;
-        newAffiliation.coord = xy;
-
-        allAffiliations[id] = newAffiliation;
-
-        return true;
-    }
+    // Replace the line below with your implementation
+    throw NotImplemented("add_affiliation()");
 }
 
-Name Datastructures::get_affiliation_name(AffiliationID id)
+Name Datastructures::get_affiliation_name(AffiliationID /*id*/)
 {
-    auto it = allAffiliations.find(id);
-
-    if (it != allAffiliations.end()) {
-        return it->second.name;
-    } else {
-        return NO_NAME;
-    }
+    // Replace the line below with your implementation
+    throw NotImplemented("get_affiliation_name()");
 }
 
-Coord Datastructures::get_affiliation_coord(AffiliationID id)
+Coord Datastructures::get_affiliation_coord(AffiliationID /*id*/)
 {
-    auto it = allAffiliations.find(id);
-
-    if (it != allAffiliations.end()) {
-        return it->second.coord;
-    } else {
-        return NO_COORD;
-    }
+    // Replace the line below with your implementation
+    throw NotImplemented("get_affiliation_coord()");
 }
 
 std::vector<AffiliationID> Datastructures::get_affiliations_alphabetically()
 {
-    std::multimap<Name, AffiliationID> affiliation_map;
-        std::vector<AffiliationID> affiliation_vector;
-
-        for (const auto& affiliation : allAffiliations) {
-            affiliation_map.insert({affiliation.second.name, affiliation.first});
-        }
-
-        for (const auto& affiliation : affiliation_map) {
-            affiliation_vector.push_back(affiliation.second);
-        }
-
-        return affiliation_vector;
+    // Replace the line below with your implementation
+    throw NotImplemented("get_affiliations_alphabetically()");
 }
 
 std::vector<AffiliationID> Datastructures::get_affiliations_distance_increasing()
 {
-    std::multimap<int, AffiliationID> affiliation_map;
-        std::vector<AffiliationID> affiliation_vector;
-        unsigned int distance = 0;
-
-        for (const auto& affiliation : allAffiliations) {
-            distance=sqrt(pow(affiliation.second.coord.x, 2)
-                                  +pow(affiliation.second.coord.y, 2));
-            affiliation_map.insert({distance, affiliation.first});
-        }
-
-        for (const auto& affiliation : affiliation_map) {
-            affiliation_vector.push_back(affiliation.second);
-        }
-
-        return affiliation_vector;
+    // Replace the line below with your implementation
+    throw NotImplemented("get_affiliations_distance_increasing()");
 }
 
-AffiliationID Datastructures::find_affiliation_with_coord(Coord xy)
+AffiliationID Datastructures::find_affiliation_with_coord(Coord /*xy*/)
 {
-    for (const auto& affiliation : allAffiliations) {
-            if (affiliation.second.coord.x == xy.x && affiliation.second.coord.y == xy.y) {
-                return affiliation.first;
-            }
-        }
-
-        return NO_AFFILIATION;
+    // Replace the line below with your implementation
+    throw NotImplemented("find_affiliation_with_coord()");
 }
-bool Datastructures::change_affiliation_coord(AffiliationID id, Coord newcoord)
+
+bool Datastructures::change_affiliation_coord(AffiliationID /*id*/, Coord /*newcoord*/)
 {
-    auto it = allAffiliations.find(id);
-
-        if (it != allAffiliations.end()) {
-            it->second.coord = newcoord;
-            return true;
-        }
-
-        return false;
+    // Replace the line below with your implementation
+    throw NotImplemented("change_affiliation_coord()");
 }
-
 
 bool Datastructures::add_publication(PublicationID /*id*/, const Name &/*name*/, Year /*year*/, const std::vector<AffiliationID> &/*affiliations*/)
 {
@@ -260,6 +198,42 @@ bool Datastructures::remove_publication(PublicationID /*publicationid*/)
 {
     // Replace the line below with your implementation
     throw NotImplemented("remove_publication()");
+}
+
+std::vector<Connection> Datastructures::get_connected_affiliations(AffiliationID /*id*/)
+{
+    // Replace the line below with your implementation
+    throw NotImplemented("get_connected_affiliations()");
+}
+
+std::vector<Connection> Datastructures::get_all_connections()
+{
+    // Replace the line below with your implementation
+    throw NotImplemented("get_all_connections()");
+}
+
+Path Datastructures::get_any_path(AffiliationID /*source*/, AffiliationID /*target*/)
+{
+    // Replace the line below with your implementation
+    throw NotImplemented("get_any_path()");
+}
+
+Path Datastructures::get_path_with_least_affiliations(AffiliationID /*source*/, AffiliationID /*target*/)
+{
+    // Replace the line below with your implementation
+    throw NotImplemented("get_path_with_least_affiliations()");
+}
+
+Path Datastructures::get_path_of_least_friction(AffiliationID /*source*/, AffiliationID /*target*/)
+{
+    // Replace the line below with your implementation
+    throw NotImplemented("get_path_of_least_friction()");
+}
+
+PathWithDist Datastructures::get_shortest_path(AffiliationID /*source*/, AffiliationID /*target*/)
+{
+    // Replace the line below with your implementation
+    throw NotImplemented("get_shortest_path()");
 }
 
 

@@ -1,8 +1,8 @@
 // Datastructures.hh
 //
-// Student name: Pinja Rontu
-// Student email: pinja.rontu@tuni.fi
-// Student number: H299834
+// Student name:
+// Student email:
+// Student number:
 
 #ifndef DATASTRUCTURES_HH
 #define DATASTRUCTURES_HH
@@ -14,7 +14,6 @@
 #include <limits>
 #include <functional>
 #include <exception>
-#include <memory>
 
 // Types for IDs
 using AffiliationID = std::string;
@@ -22,7 +21,12 @@ using PublicationID = unsigned long long int;
 using Name = std::string;
 using Year = unsigned short int;
 using Weight = int;
+struct Connection;
+// Type for a distance (in arbitrary units)
 using Distance = int;
+
+using Path = std::vector<Connection>;
+using PathWithDist = std::vector<std::pair<Connection,Distance>>;
 
 // Return values for cases where required thing was not found
 AffiliationID const NO_AFFILIATION = "---";
@@ -71,6 +75,18 @@ inline bool operator<(Coord c1, Coord c2)
 // Return value for cases where coordinates were not found
 Coord const NO_COORD = {NO_VALUE, NO_VALUE};
 
+struct Connection
+{
+    AffiliationID aff1 = NO_AFFILIATION;
+    AffiliationID aff2 = NO_AFFILIATION;
+    Weight weight = NO_WEIGHT;
+    bool operator==(const Connection& c1) const{
+        return (aff1==c1.aff1) && (aff2==c1.aff2) && (weight==c1.weight);
+    }
+};
+const Connection NO_CONNECTION{NO_AFFILIATION,NO_AFFILIATION,NO_WEIGHT};
+
+
 // Return value for cases where Distance is unknown
 Distance const NO_DISTANCE = NO_VALUE;
 
@@ -98,50 +114,47 @@ public:
     Datastructures();
     ~Datastructures();
 
-    // Estimate of performance: O(1)
-    // Short rationale for estimate: time complexity of size()
+    // Estimate of performance:
+    // Short rationale for estimate:
     unsigned int get_affiliation_count();
 
-    // Estimate of performance: O(1)
-    // Short rationale for estimate: time complexity of clear()
+    // Estimate of performance:
+    // Short rationale for estimate:
     void clear_all();
 
-    // Estimate of performance: O(n)
-    // Short rationale for estimate: O(n) for for loop and O(1) for push_back()
+    // Estimate of performance:
+    // Short rationale for estimate:
     std::vector<AffiliationID> get_all_affiliations();
 
-    // Estimate of performance: O(1)
-    // Short rationale for estimate: time complexity for find() and inserting one
-    // element for unordered maps
+    // Estimate of performance:
+    // Short rationale for estimate:
     bool add_affiliation(AffiliationID id, Name const& name, Coord xy);
 
-    // Estimate of performance: average O(1), worst case O(n)
-    // Short rationale for estimate: time complexity of find() for unordered map
+    // Estimate of performance:
+    // Short rationale for estimate:
     Name get_affiliation_name(AffiliationID id);
 
-    // Estimate of performance: average O(1), worst case O(n)
-    // Short rationale for estimate: time complexity of find() for unordered map
+    // Estimate of performance:
+    // Short rationale for estimate:
     Coord get_affiliation_coord(AffiliationID id);
 
 
     // We recommend you implement the operations below only after implementing the ones above
 
-    // Estimate of performance: O(n log(n))
-    // Short rationale for estimate: O(n) for for loops and O(log(n))
-    // for multimap insert() and O(1) for push_back()
+    // Estimate of performance:
+    // Short rationale for estimate:
     std::vector<AffiliationID> get_affiliations_alphabetically();
 
-    // Estimate of performance: O(n log(n))
-    // Short rationale for estimate: O(n) for for loops and O(log(n))
-    // for multimap insert() and O(1) for push_back()
+    // Estimate of performance:
+    // Short rationale for estimate:
     std::vector<AffiliationID> get_affiliations_distance_increasing();
 
-    // Estimate of performance: O(n)
-    // Short rationale for estimate: O(n) for for loop
+    // Estimate of performance:
+    // Short rationale for estimate:
     AffiliationID find_affiliation_with_coord(Coord xy);
 
-    // Estimate of performance: average O(1), worst case O(n)
-    // Short rationale for estimate: time complexity of find() for unordered map
+    // Estimate of performance:
+    // Short rationale for estimate:
     bool change_affiliation_coord(AffiliationID id, Coord newcoord);
 
 
@@ -218,28 +231,36 @@ public:
     // Short rationale for estimate:
     bool remove_publication(PublicationID publicationid);
 
+    // PRG 2 functions:
+
+    // Estimate of performance:
+    // Short rationale for estimate:
+    std::vector<Connection> get_connected_affiliations(AffiliationID id);
+
+    // Estimate of performance:
+    // Short rationale for estimate:
+    std::vector<Connection> get_all_connections();
+
+    // Estimate of performance:
+    // Short rationale for estimate:
+    Path get_any_path(AffiliationID source, AffiliationID target);
+
+    // PRG2 optional functions
+
+    // Estimate of performance:
+    // Short rationale for estimate:
+    Path get_path_with_least_affiliations(AffiliationID source, AffiliationID target);
+
+    // Estimate of performance:
+    // Short rationale for estimate:
+    Path get_path_of_least_friction(AffiliationID source, AffiliationID target);
+
+    // Estimate of performance:
+    // Short rationale for estimate:
+    PathWithDist get_shortest_path(AffiliationID source, AffiliationID target);
+
 
 private:
-
-    struct Affiliation {
-        AffiliationID id;
-        Name name;
-        Coord coord;
-        std::vector<PublicationID> publicationIDs; // which publications are under this affiliation
-    };
-
-    std::unordered_map<AffiliationID, Affiliation> allAffiliations;
-
-    struct Publication {
-        PublicationID id;
-        Name title;
-        Year year;
-        std::vector<AffiliationID> affiliationIDs; // which affiliations own this publication
-        std::shared_ptr<Publication> parent; // which publication is this publication referenced by
-        std::vector<std::shared_ptr<Publication>> references; // which publications is this publication referencing
-    };
-
-    std::unordered_map<PublicationID, Publication> allPublications;
 
 };
 
