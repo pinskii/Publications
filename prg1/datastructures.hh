@@ -147,52 +147,58 @@ public:
 
     // We recommend you implement the operations below only after implementing the ones above
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: O(n)
+    // Short rationale for estimate: O(1) for find, O(n) for for loop,
+    // O(1) average O(n) worst case for emplace()
     bool add_publication(PublicationID id, Name const& name, Year year, const std::vector<AffiliationID> & affiliations);
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: O(n log(n))
+    // Short rationale for estimate: O(n) for for loop, O(1) for push_back(),
+    // O(n log(n)) for sort()
     std::vector<PublicationID> all_publications();
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: average O(1), worst case O(n)
+    // Short rationale for estimate: time complexity of find() for unordered map
     Name get_publication_name(PublicationID id);
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: average O(1), worst case O(n)
+    // Short rationale for estimate: time complexity of find() for unordered map
     Year get_publication_year(PublicationID id);
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: average O(1), worst case O(n)
+    // Short rationale for estimate: time complexity of find() for unordered map
     std::vector<AffiliationID> get_affiliations(PublicationID id);
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: average O(1), worst case O(n)
+    // Short rationale for estimate: time complexity of find() for unordered map
     bool add_reference(PublicationID id, PublicationID parentid);
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: O(n)
+    // Short rationale for estimate: average O(1) worst case O(n) for unordered map,
+    // O(n) for for loop, O(1) for push_back()
     std::vector<PublicationID> get_direct_references(PublicationID id);
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: average O(1), worst case O(n)
+    // Short rationale for estimate: time complexity of find() for unordered map
+    // and for push_back()
     bool add_affiliation_to_publication(AffiliationID affiliationid, PublicationID publicationid);
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: average O(1), worst case O(n)
+    // Short rationale for estimate: time complexity of find() for unordered map
     std::vector<PublicationID> get_publications(AffiliationID id);
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: average O(1), worst case O(n)
+    // Short rationale for estimate: time complexity of find() for unordered map
     PublicationID get_parent(PublicationID id);
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: O(n log(n))
+    // Short rationale for estimate: average O(1) for find(), O(n) for for loop,
+    // O(1) for emplace_back(), O(n log(n)) for sort()
     std::vector<std::pair<Year, PublicationID>> get_publications_after(AffiliationID affiliationid, Year year);
 
-    // Estimate of performance:
-    // Short rationale for estimate:
+    // Estimate of performance: average O(1), worst case O(n)
+    // Short rationale for estimate: average O(1) worst case O(n) for insert(),
+    // average O(1) worst case O(n) for find(), O(1) for push_back()
     std::vector<PublicationID> get_referenced_by_chain(PublicationID id);
 
 
